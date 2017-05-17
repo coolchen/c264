@@ -367,6 +367,14 @@ enum sei_payload_type_e
 
 typedef struct
 {
+    dctcoef luma16x16_dc[3][16];
+    dctcoef chroma_dc[2][8];
+    dctcoef luma8x8[12][64];
+    dctcoef luma4x4[16*3][16];
+} UnalignedDCT;
+
+typedef struct
+{
     x264_sps_t *sps;
     x264_pps_t *pps;
 
@@ -744,13 +752,13 @@ struct x264_t
                                              * NOTE: this will fail on resolutions above 2^16 MBs... */
         uint8_t *field;
 
-        struct UnalignedDCT
-        {
-            dctcoef luma16x16_dc[3][16];
-            dctcoef chroma_dc[2][8];
-            dctcoef luma8x8[12][64];
-            dctcoef luma4x4[16*3][16];
-        };
+        // struct UnalignedDCT
+        // {
+        //     dctcoef luma16x16_dc[3][16];
+        //     dctcoef chroma_dc[2][8];
+        //     dctcoef luma8x8[12][64];
+        //     dctcoef luma4x4[16*3][16];
+        // };
 
         struct UnalignedDCT* p_frameDCT;
 
