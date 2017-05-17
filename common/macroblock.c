@@ -324,6 +324,8 @@ int x264_macroblock_cache_allocate( x264_t *h )
             PREALLOC( h->mb.p_weight_buf[i], luma_plane_size * sizeof(pixel) );
     }
 
+    PREALLOC(h->mb.p_frameDCT, i_mb_count * sizeof(UnalignedDCT));
+
     PREALLOC_END( h->mb.base );
 
     memset( h->mb.slice_table, -1, i_mb_count * sizeof(uint16_t) );
@@ -1616,6 +1618,7 @@ void x264_macroblock_deblock_strength( x264_t *h )
         x264_macroblock_deblock_strength_mbaff( h, bs );
 }
 
+// save the re-constructed mb to fdec frame
 static void ALWAYS_INLINE x264_macroblock_store_pic( x264_t *h, int mb_x, int mb_y, int i, int b_chroma, int b_mbaff )
 {
     int height = b_chroma ? 16>>CHROMA_V_SHIFT : 16;

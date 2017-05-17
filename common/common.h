@@ -744,6 +744,16 @@ struct x264_t
                                              * NOTE: this will fail on resolutions above 2^16 MBs... */
         uint8_t *field;
 
+        struct UnalignedDCT
+        {
+            dctcoef luma16x16_dc[3][16];
+            dctcoef chroma_dc[2][8];
+            dctcoef luma8x8[12][64];
+            dctcoef luma4x4[16*3][16];
+        };
+
+        struct UnalignedDCT* p_frameDCT;
+
          /* buffer for weighted versions of the reference frames */
         pixel *p_weight_buf[X264_REF_MAX];
 
