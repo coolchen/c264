@@ -367,10 +367,11 @@ enum sei_payload_type_e
 
 typedef struct
 {
-    dctcoef luma16x16_dc[3][16];
-    dctcoef chroma_dc[2][8];
-    dctcoef luma8x8[12][64];
-    dctcoef luma4x4[16*3][16];
+    ALIGNED_N( dctcoef luma16x16_dc[3][16] );
+    ALIGNED_16( dctcoef chroma_dc[2][8] );
+    // FIXME share memory?
+    ALIGNED_N( dctcoef luma8x8[12][64] );
+    ALIGNED_N( dctcoef luma4x4[16*3][16] );
 } UnalignedDCT;
 
 typedef struct

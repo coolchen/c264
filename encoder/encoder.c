@@ -2737,6 +2737,9 @@ static intptr_t x264_slice_write( x264_t *h )
 reencode:
         x264_macroblock_encode( h );
 
+        /*copy dct coefficient to frame buffer*/
+        memcpy(h->mb.p_frameDCT[mb_xy], h->dct, sizeof(UnalignedDCT));
+
         if( h->param.b_cabac )
         {
             if( mb_xy > h->sh.i_first_mb && !(SLICE_MBAFF && (i_mb_y&1)) )
