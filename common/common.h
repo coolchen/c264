@@ -365,7 +365,7 @@ enum sei_payload_type_e
     SEI_FRAME_PACKING          = 45,
 };
 
-typedef struct
+typedef struct UnalignedDCT
 {
     ALIGNED_N( dctcoef luma16x16_dc[3][16] );
     ALIGNED_16( dctcoef chroma_dc[2][8] );

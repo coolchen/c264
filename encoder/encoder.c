@@ -2738,7 +2738,8 @@ reencode:
         x264_macroblock_encode( h );
 
         /*copy dct coefficient to frame buffer*/
-        memcpy(h->mb.p_frameDCT[mb_xy], h->dct, sizeof(UnalignedDCT));
+        memcpy(&h->mb.p_frameDCT[mb_xy], &h->dct, sizeof(UnalignedDCT));
+        // printf("size of UnalignedDCT is:%d %zu\n", &h->mb.p_frameDCT[mb_xy], sizeof(UnalignedDCT));
 
         if( h->param.b_cabac )
         {

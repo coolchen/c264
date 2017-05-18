@@ -9,7 +9,7 @@
             "args": [
                 "-o",
                 "output.mp4",
-                "~/Videos/720p50_shields_ter.y4m"
+                "~/Videos/bridge_far_qcif.y4m"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
